@@ -47,11 +47,11 @@ def pcut(block, depth, pix, img_num):
         c = mean_pixel(block, pix)
         if block.color != c:
             block.color = c
-            with open(f'isl_codes/{img_num}.isl', 'a') as file:
+            with open(f'isl_codes/gm/{img_num}.isl', 'a') as file:
                 file.write(f'color [{block.id}] [{c[0]}, {c[1]}, {c[2]}, {c[3]}]\n')
     else:
         offsest = block.length // 2
-        with open(f'isl_codes/{img_num}.isl', 'a') as file:
+        with open(f'isl_codes/gm/{img_num}.isl', 'a') as file:
             file.write(f'cut [{block.id}] [{block.x1 + offsest}, {block.y1 + offsest}]\n')
         pcut(Block(offsest, block.x1, block.y1, block.x1 + offsest, block.y1 + offsest, block.id + '.0'), depth + 1, pix, img_num)
         pcut(Block(offsest, block.x1 + offsest, block.y1, block.x2, block.y1 + offsest, block.id + '.1'), depth + 1, pix, img_num)
@@ -60,9 +60,9 @@ def pcut(block, depth, pix, img_num):
 
 
 
-num = 36
-path = f'images/{num}.png'
-img = Image.open(path)
-pix = img.load()
-initial = Block(400, 0, 0, 400, 400, '0')
-pcut(initial, 0, pix, num)
+# num = 36
+# path = f'images/{num}.png'
+# img = Image.open(path)
+# pix = img.load()
+# initial = Block(400, 0, 0, 400, 400, '0')
+# pcut(initial, 0, pix, num)
